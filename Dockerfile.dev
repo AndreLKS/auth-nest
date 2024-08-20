@@ -1,0 +1,17 @@
+#################
+## DEVELOPMENT ##
+##########################
+# docker compose up dev ##
+########################## 
+
+FROM node:16.14.2-slim AS development
+
+# Set Working Directory
+WORKDIR /usr/src/app/sancon-clock-api
+
+# Copy all from development stage
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .

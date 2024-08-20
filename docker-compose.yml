@@ -1,0 +1,37 @@
+services:
+    dev:
+        container_name: sancon-clock-api-dev
+        image: sancon-clock-api
+        build:
+            context: .
+            target: development
+            dockerfile: ./Dockerfile.dev
+
+        command: npm run start:debug
+        ports:
+            - 4000:4000
+            - 9229:9229
+            - 2222:2222
+
+        volumes:
+            - .:/sancon-clock-api
+            - /sancon-clock-api
+        # restart: unless-stopped
+    prod:
+        container_name: sancon-clock-api-prod
+        image: sancon-clock-api
+        build:
+            context: .
+            target: production
+            dockerfile: ./Dockerfile.prod
+
+        command: npm run start:prod
+        ports:
+            - 4000:4000
+            - 9229:9229
+            - 2222:2222
+
+        volumes:
+            - .:/sancon-clock-api
+            - /sancon-clock-api
+        # restart: unless-stopped       
